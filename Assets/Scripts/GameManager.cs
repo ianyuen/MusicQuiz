@@ -9,6 +9,7 @@ public class GameManager
     {
         var fileContents = Resources.Load<TextAsset>("coding-test-frontend-unity").text;
         Playlists = JsonConvert.DeserializeObject<List<Playlist>>(fileContents);
+        UserChoices = new List<Choice>();
     }
 
     public static GameManager Instance
@@ -23,6 +24,8 @@ public class GameManager
         }
     }
 
+    public int Score { get; set; }
     public string PlaylistID { get; set; }
+    public List<Choice> UserChoices { get; set; }
     public List<Playlist> Playlists { get; set; }
 }
