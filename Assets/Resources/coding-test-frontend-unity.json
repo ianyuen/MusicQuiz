@@ -1,0 +1,279 @@
+[
+  {
+    "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-0",
+    "questions": [
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-0-0",
+        "answerIndex": 1,
+        "choices": [
+          { "artist": "Spice Girls", "title": "Spice Up Your Life" },
+          { "artist": "Mr. Big", "title": "To Be With You" },
+          { "artist": "New Kids On The Block", "title": "Step By Step" },
+          { "artist": "Westlife", "title": "Swear It Again" }
+        ],
+        "song": {
+          "id": "USAT29100048",
+          "title": "To Be With You",
+          "artist": "Mr. Big",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=296499",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/296499-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-0-1",
+        "answerIndex": 3,
+        "choices": [
+          {
+            "artist": "C+C Music Factory",
+            "title": "Gonna Make You Sweat (Everybody Dance Now)"
+          },
+          { "artist": "Vanessa Williams", "title": "Save the Best for Last" },
+          { "artist": "Spice Girls", "title": "2 Become 1" },
+          { "artist": "Los del Río", "title": "Macarena (Bayside Boys Remix)" }
+        ],
+        "song": {
+          "id": "ES5109500537",
+          "title": "Macarena (Bayside Boys Remix)",
+          "artist": "Los del Río",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=4667531226775552",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/4667531226775552-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-0-2",
+        "answerIndex": 3,
+        "choices": [
+          { "artist": "George Michael", "title": "Praying for Time" },
+          { "artist": "Destiny's Child", "title": "Bills, Bills, Bills" },
+          { "artist": "Christina Aguilera", "title": "Genie In a Bottle" },
+          { "artist": "P.M. Dawn", "title": "Set Adrift On Memory Bliss" }
+        ],
+        "song": {
+          "id": "USLS51227605",
+          "title": "Set Adrift On Memory Bliss",
+          "artist": "P.M. Dawn",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=5784457806086144",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/5784457806086144-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-0-3",
+        "answerIndex": 3,
+        "type": "TITLE",
+        "choices": [
+          { "artist": "Mariah Carey", "title": "Love Takes Time" },
+          { "artist": "Beats International", "title": "Dub Be Good to Me" },
+          { "artist": "Elton John", "title": "Sacrifice" },
+          { "artist": "Santana & Rob Thomas", "title": "Smooth" }
+        ],
+        "song": {
+          "id": "USAR19900033",
+          "title": "Smooth",
+          "artist": "Santana & Rob Thomas",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=73124",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/73124-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-0-4",
+        "answerIndex": 2,
+        "choices": [
+          { "artist": "Karyn White", "title": "Romantic" },
+          { "artist": "Shanks & Bigfoot", "title": "Sweet Like Chocolate" },
+          { "artist": "No Doubt", "title": "Don't Speak" },
+          { "artist": "Hanson", "title": "MMMBop" }
+        ],
+        "song": {
+          "id": "USIR19500279",
+          "title": "Don't Speak",
+          "artist": "No Doubt",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=76174",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/76174-sound.wav"
+        }
+      }
+    ],
+    "playlist": "1990's #1 Hits"
+  },
+  {
+    "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-1",
+    "questions": [
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-1-0",
+        "answerIndex": 2,
+        "choices": [
+          { "artist": "Hi-Five", "title": "I Like the Way (The Kissing Game)" },
+          { "artist": "Madonna", "title": "Justify My Love" },
+          { "artist": "Extreme", "title": "More Than Words" },
+          { "artist": "George Michael", "title": "Praying for Time" }
+        ],
+        "song": {
+          "id": "USUM71409289",
+          "title": "More Than Words",
+          "artist": "Extreme",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=64171",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/64171-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-1-1",
+        "answerIndex": 2,
+        "choices": [
+          { "artist": "Janet Jackson", "title": "Escapade" },
+          { "artist": "Mariah Carey", "title": "Someday" },
+          { "artist": "Snow", "title": "Informer" },
+          { "artist": "EMF", "title": "Unbelievable" }
+        ],
+        "song": {
+          "id": "USEW19300006",
+          "title": "Informer",
+          "artist": "Snow",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=285975",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/285975-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-1-2",
+        "answerIndex": 2,
+        "choices": [
+          { "artist": "New Kids On The Block", "title": "Step By Step" },
+          { "artist": "Jon Bon Jovi", "title": "Blaze of Glory" },
+          { "artist": "Boyz II Men", "title": "I'll Make Love to You" },
+          { "artist": "Paula Abdul", "title": "Rush Rush" }
+        ],
+        "song": {
+          "id": "USMO19400340",
+          "title": "I'll Make Love to You",
+          "artist": "Boyz II Men",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=62172",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/62172-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-1-3",
+        "answerIndex": 3,
+        "choices": [
+          { "artist": "Paula Abdul", "title": "Opposites Attract" },
+          { "artist": "Céline Dion", "title": "The Power of Love" },
+          { "artist": "TLC", "title": "Creep" },
+          { "artist": "Vanilla Ice", "title": "Ice Ice Baby" }
+        ],
+        "song": {
+          "id": "USSB29000129",
+          "title": "Ice Ice Baby",
+          "artist": "Vanilla Ice",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=248246",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/248246-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-1-4",
+        "answerIndex": 1,
+        "choices": [
+          { "artist": "Boyz II Men", "title": "End of the Road" },
+          { "artist": "TLC", "title": "Waterfalls" },
+          { "artist": "Janet Jackson", "title": "That's the Way Love Goes" },
+          { "artist": "Mariah Carey", "title": "Fantasy" }
+        ],
+        "song": {
+          "id": "USLF29400133",
+          "title": "Waterfalls",
+          "artist": "TLC",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=283987",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/283987-sound.wav"
+        }
+      }
+    ],
+    "playlist": "#1 Hits 1990-95"
+  },
+  {
+    "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-2",
+    "questions": [
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-2-0",
+        "answerIndex": 1,
+        "choices": [
+          { "artist": "Nirvana", "title": "Lithium" },
+          { "artist": "Destiny's Child", "title": "Say My Name" },
+          { "artist": "Gloria Estefan", "title": "Turn the Beat Around" },
+          { "artist": "Steps", "title": "Tragedy" }
+        ],
+        "song": {
+          "id": "USSM19901056",
+          "title": "Say My Name",
+          "artist": "Destiny's Child",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=781299332",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/781299332-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-2-1",
+        "answerIndex": 2,
+        "choices": [
+          { "artist": "DMX", "title": "What's My Name" },
+          { "artist": "Daft Punk", "title": "Around the World" },
+          { "artist": "Lenny Kravitz", "title": "Are You Gonna Go My Way" },
+          { "artist": "No Doubt", "title": "Spiderwebs" }
+        ],
+        "song": {
+          "id": "USVI29300001",
+          "title": "Are You Gonna Go My Way",
+          "artist": "Lenny Kravitz",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=790538",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/790538-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-2-2",
+        "answerIndex": 0,
+        "choices": [
+          { "artist": "MC Hammer", "title": "U Can't Touch This" },
+          { "artist": "Aqua", "title": "Barbie Girl" },
+          { "artist": "Jennifer Lopez", "title": "If You Had My Love" },
+          { "artist": "The Black Crowes", "title": "Hard To Handle" }
+        ],
+        "song": {
+          "id": "USCA29000294",
+          "title": "U Can't Touch This",
+          "artist": "MC Hammer",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=255230",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/255230-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-2-3",
+        "answerIndex": 2,
+        "choices": [
+          { "artist": "Diana King", "title": "Shy Guy" },
+          { "artist": "Cake", "title": "The Distance" },
+          { "artist": "The Goo Goo Dolls", "title": "Iris" },
+          { "artist": "Terror Fabulous & Nadine Sutherland", "title": "Action" }
+        ],
+        "song": {
+          "id": "USWB19800160",
+          "title": "Iris",
+          "artist": "The Goo Goo Dolls",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=68112",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/68112-sound.wav"
+        }
+      },
+      {
+        "id": "08cb59ae-4415-4155-82ff-d5077ddbcc8c-2-4",
+        "answerIndex": 1,
+        "choices": [
+          { "artist": "Smart E's", "title": "Sesame's Treet" },
+          { "artist": "Mariah Carey", "title": "Fantasy" },
+          { "artist": "Savage Garden", "title": "I Want You" },
+          { "artist": "Ginuwine", "title": "Pony" }
+        ],
+        "song": {
+          "id": "USSM19501031",
+          "title": "Fantasy",
+          "artist": "Mariah Carey",
+          "picture": "https://wam-mobile.appspot.com/cdn/music/songs/album/get?songId=285881",
+          "sample": "https://storage.googleapis.com/songpop/samples/wav/8s/285881-sound.wav"
+        }
+      }
+    ],
+    "playlist": "1990's Fun!"
+  }
+]
