@@ -23,5 +23,6 @@ public class GameManager
         }
     }
 
+    public string PlaylistID { get; set; }
     public List<Playlist> Playlists { get; set; }
 }
