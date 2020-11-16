@@ -8,21 +8,23 @@ using UnityEngine.UI;
 
 public class Quiz : MonoBehaviour
 {
-    public GameObject resultButton;
     public List<GameObject> answerButtons;
     public List<RawImage> images;
-
-    Vector2 scrollViewVector = Vector2.zero;
+    public RawImage picture;
+    public Image blur;
 
     int index = -1;
     Song song;
     Question question;
     Playlist playlist;
+    AudioSource audio;
 
     // Start is called before the first frame update
     void Start()
     {
-        resultButton.SetActive(false);
+        blur.enabled = false;
+        audio = GetComponent<AudioSource>();
+        picture.enabled = false;
         foreach (RawImage image in images)
         {
             image.enabled = false;
@@ -63,11 +65,7 @@ public class Quiz : MonoBehaviour
         }
         else
         {
-            foreach (GameObject answerButton in answerButtons)
-            {
-                answerButton.SetActive(false);
-            }
-            resultButton.SetActive(true);
+            StartCoroutine(WaitAndNextScene());
         }
     }
 
@@ -110,13 +108,10 @@ public class Quiz : MonoBehaviour
         NextQuestion();
     }
 
-    public void OnClickResult()
-    {
-        SceneManager.LoadScene("Result");
-    }
-
     void CheckAnswer(Choice choice)
     {
+        blur.enabled = true;
+        audio.Stop();
         GameManager.Instance.UserChoices.Add(choice);
         if (song.artist == choice.artist && song.title == choice.title)
         {
@@ -133,9 +128,16 @@ public class Quiz : MonoBehaviour
     {
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
         yield return www.SendWebRequest();
+        yield return new WaitForSeconds(0.5f);
 
-        images[0].texture = DownloadHandlerTexture.GetContent(www);
-        ShowImage("picture");
+        foreach (RawImage image in images)
+        {
+            image.enabled = false;
+        }
+        blur.enabled = false;
+        picture.texture = DownloadHandlerTexture.GetContent(www);
+        picture.enabled = true;
+        audio.Play();
     }
 
     IEnumerator SetAudio(string url)
@@ -143,8 +145,12 @@ public class Quiz : MonoBehaviour
         UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV);
         yield return www.SendWebRequest();
 
-        AudioSource audio = GetComponent<AudioSource>();
         audio.clip = DownloadHandlerAudioClip.GetContent(www);
-        audio.Play();
+    }
+
+    IEnumerator WaitAndNextScene()
+    {
+        yield return new WaitForSeconds(0.8f);
+        SceneManager.LoadScene("Result");
     }
 }
