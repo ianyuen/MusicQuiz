@@ -143,10 +143,9 @@ public class Quiz : MonoBehaviour
         {
             UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
             yield return www.SendWebRequest();
-            yield return new WaitForSeconds(0.5f);
             GameManager.Instance.SetTexture(url, DownloadHandlerTexture.GetContent(www));
         }
-
+        yield return new WaitForSeconds(0.5f);
         foreach (RawImage image in images)
         {
             image.enabled = false;
@@ -168,17 +167,20 @@ public class Quiz : MonoBehaviour
 
     IEnumerator SetAudio(string url)
     {
-        UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV);
-        yield return www.SendWebRequest();
+        if (GameManager.Instance.GetAudioClip(url) == null)
+        {
+            UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV);
+            yield return www.SendWebRequest();
+            GameManager.Instance.SetAudioClip(url, DownloadHandlerAudioClip.GetContent(www));
+        }
         yield return new WaitForSeconds(0.5f);
-
-        audioSource.clip = DownloadHandlerAudioClip.GetContent(www);
+        audioSource.clip = GameManager.Instance.GetAudioClip(url);
         audioSource.Play();
     }
 
     IEnumerator WaitAndNextScene()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Result");
     }
 }

@@ -38,4 +38,14 @@ public class GameManager
     {
         return textures.ContainsKey(name) ? textures[name] : null;
     }
+
+    Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
+    public void SetAudioClip(string name, AudioClip audio)
+    {
+        audioClips.Add(name, audio);
+    }
+    public AudioClip GetAudioClip(string name)
+    {
+        return audioClips.ContainsKey(name) ? audioClips[name] : null;
+    }
 }
