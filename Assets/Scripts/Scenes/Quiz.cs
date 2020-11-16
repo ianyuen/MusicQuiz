@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -7,60 +8,19 @@ using UnityEngine.UI;
 
 public class Quiz : MonoBehaviour
 {
-    public new GameObject gameObject;
+    public List<Button> answerButtons;
+    public List<RawImage> images;
+
     Vector2 scrollViewVector = Vector2.zero;
 
     int index = -1;
     Song song;
-    Image[] images;
-    Texture texture;
+    Question question;
     Playlist playlist;
-
-    void OnGUI()
-    {
-        if (texture != null)
-        {
-            GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
-            GUILayout.BeginVertical("Box");
-
-            ShowImage("true", false);
-            ShowImage("false", false);
-
-            GUILayout.Box(texture, GUILayout.Height(Screen.width));
-
-            scrollViewVector = GUILayout.BeginScrollView(scrollViewVector);
-            foreach (Choice choice in playlist.questions[index].choices)
-            {
-                if (GUILayout.Button(choice.title))
-                {
-                    GameManager.Instance.UserChoices.Add(choice);
-                    if (song.artist == choice.artist && song.title == choice.title)
-                    {
-                        GameManager.Instance.Score += 1;
-                        ShowImage("true", true);
-                    }
-                    else
-                    {
-                        ShowImage("false", true);
-                    }
-                    NextQuestion();
-                }
-            }
-
-            GUILayout.EndScrollView();
-            GUILayout.EndVertical();
-            GUILayout.EndArea();
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
     {
-        images = gameObject.GetComponentsInChildren<Image>();
-
-        ShowImage("true", false);
-        ShowImage("false", false);
-
         foreach (Playlist playlist in GameManager.Instance.Playlists)
         {
             if (playlist.id == GameManager.Instance.PlaylistID)
@@ -78,14 +38,18 @@ public class Quiz : MonoBehaviour
 
     }
 
-    void NextQuestion()
+    public void NextQuestion()
     {
         if (index < playlist.questions.Count - 1)
         {
-            texture = null;
-
             index += 1;
-            song = playlist.questions[index].song;
+            question = playlist.questions[index];
+            for (int i = 0; i < question.choices.Count; i++)
+            {
+                Choice choice = question.choices[i];
+                answerButtons[i].GetComponentInChildren<TMP_Text>().text = choice.title;
+            }
+            song = question.song;
 
             StartCoroutine(SetImage(song.picture));
             StartCoroutine(SetAudio(song.sample));
@@ -96,15 +60,56 @@ public class Quiz : MonoBehaviour
         }
     }
 
-    void ShowImage(string name, bool enabled)
+    void ShowImage(string name)
     {
-        foreach (Image image in images)
+        foreach (RawImage image in images)
         {
             if (image.name == name)
             {
-                image.enabled = enabled;
-                break;
+                image.enabled = true;
             }
+            else
+            {
+                image.enabled = false;
+            }
+        }
+    }
+
+    public void OnClickAnswer1()
+    {
+        CheckAnswer(question.choices[0]);
+        NextQuestion();
+    }
+
+    public void OnClickAnswer2()
+    {
+        CheckAnswer(question.choices[1]);
+        NextQuestion();
+    }
+
+    public void OnClickAnswer3()
+    {
+        CheckAnswer(question.choices[2]);
+        NextQuestion();
+    }
+
+    public void OnClickAnswer4()
+    {
+        CheckAnswer(question.choices[3]);
+        NextQuestion();
+    }
+
+    void CheckAnswer(Choice choice)
+    {
+        GameManager.Instance.UserChoices.Add(choice);
+        if (song.artist == choice.artist && song.title == choice.title)
+        {
+            GameManager.Instance.Score += 1;
+            ShowImage("trueImage");
+        }
+        else
+        {
+            ShowImage("falseImage");
         }
     }
 
@@ -113,7 +118,8 @@ public class Quiz : MonoBehaviour
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
         yield return www.SendWebRequest();
 
-        texture = DownloadHandlerTexture.GetContent(www);
+        images[0].texture = DownloadHandlerTexture.GetContent(www);
+        ShowImage("picture");
     }
 
     IEnumerator SetAudio(string url)
