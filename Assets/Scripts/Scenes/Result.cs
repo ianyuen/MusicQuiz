@@ -9,8 +9,9 @@ public class Result : MonoBehaviour
 {
     public TMP_Text score;
     public GameObject result;
+    public GameObject spawnPoint;
 
-    float resultPosition = 155;
+    float resultPosition = 120;
     Playlist playlist;
     List<Choice> userChoices;
 
@@ -52,7 +53,7 @@ public class Result : MonoBehaviour
     {
         Vector3 position = new Vector3(0, resultPosition, 0);
         GameObject newResult = Instantiate(result, position, Quaternion.identity);
-        newResult.transform.SetParent(GetComponentInChildren<Image>().transform, false);
+        newResult.transform.SetParent(spawnPoint.transform, false);
         resultPosition -= 60;
 
         ResultPrefab resultPrefab = newResult.GetComponentInChildren<ResultPrefab>();
