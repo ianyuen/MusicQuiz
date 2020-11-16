@@ -1,47 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Result : MonoBehaviour
 {
-    Vector2 scrollViewVector = Vector2.zero;
+    public TMP_Text score;
+    public GameObject result;
 
+    float resultPosition = 140.5f;
     Playlist playlist;
     List<Choice> userChoices;
-
-    public void OnGUI()
-    {
-        GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
-        GUILayout.BeginVertical("Box");
-
-        if (GUILayout.Button("Replay"))
-        {
-            GameManager.Instance.Score = 0;
-            GameManager.Instance.UserChoices = new List<Choice>();
-            SceneManager.LoadScene("Welcome");
-        }
-
-        GUILayout.Label("Score: " + GameManager.Instance.Score.ToString() + "/" + userChoices.Count.ToString());
-
-        scrollViewVector = GUILayout.BeginScrollView(scrollViewVector);
-        for (int index = 0; index < userChoices.Count; index++)
-        {
-            GUILayout.Label("Question: " + (index + 1).ToString());
-
-            Song song = playlist.questions[index].song;
-            GUILayout.Label("Answer: " + song.title);
-
-            Choice choice = userChoices[index];
-            GUILayout.Label("You: " + choice.title);
-
-            GUILayout.Label("");
-        }
-        GUILayout.EndScrollView();
-
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -55,11 +25,35 @@ public class Result : MonoBehaviour
         }
 
         userChoices = GameManager.Instance.UserChoices;
+        score.text = "Score: " + GameManager.Instance.Score.ToString() + "/" + userChoices.Count.ToString();
+
+        for (int index = 0; index < userChoices.Count; index++)
+        {
+            Song song = playlist.questions[index].song;
+            Choice choice = userChoices[index];
+            SpawnResult(index + 1, song.title, choice.title);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    void SpawnResult(int number, string answer, string you)
+    {
+        Vector3 position = new Vector3(0, resultPosition, 0);
+        GameObject newResult = Instantiate(result, position, Quaternion.identity);
+        newResult.transform.SetParent(transform, false);
+        resultPosition -= 50;
+
+        ResultPrefab resultPrefab = newResult.GetComponentInChildren<ResultPrefab>();
+        resultPrefab.SetResult(number.ToString(), answer, you);
+    }
+
+    public void OnClickReplay()
+    {
+        SceneManager.LoadScene("Welcome");
     }
 }
