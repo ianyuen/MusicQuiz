@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Quiz : MonoBehaviour
 {
-    public List<GameObject> answerButtons;
+    public List<Button> answerButtons;
     public List<RawImage> images;
     public RawImage picture;
     public Image blur;
@@ -17,14 +17,15 @@ public class Quiz : MonoBehaviour
     Song song;
     Question question;
     Playlist playlist;
-    AudioSource audio;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         blur.enabled = false;
-        audio = GetComponent<AudioSource>();
         picture.enabled = false;
+        SetButtonActive(false);
         foreach (RawImage image in images)
         {
             image.enabled = false;
@@ -49,15 +50,11 @@ public class Quiz : MonoBehaviour
 
     public void NextQuestion()
     {
+        SetButtonEnable(false);
         if (index < playlist.questions.Count - 1)
         {
             index += 1;
             question = playlist.questions[index];
-            for (int i = 0; i < question.choices.Count; i++)
-            {
-                Choice choice = question.choices[i];
-                answerButtons[i].GetComponentInChildren<TMP_Text>().text = choice.title;
-            }
             song = question.song;
 
             StartCoroutine(SetImage(song.picture));
@@ -81,6 +78,38 @@ public class Quiz : MonoBehaviour
             {
                 image.enabled = false;
             }
+        }
+    }
+
+    void SetButtonActive(bool active)
+    {
+        foreach (Button answerButton in answerButtons)
+        {
+            answerButton.gameObject.SetActive(active);
+        }
+    }
+
+    void SetButtonEnable(bool enable)
+    {
+        foreach (Button answerButton in answerButtons)
+        {
+            answerButton.enabled = enable;
+        }
+    }
+
+    void CheckAnswer(Choice choice)
+    {
+        blur.enabled = true;
+        audioSource.Stop();
+        GameManager.Instance.UserChoices.Add(choice);
+        if (song.artist == choice.artist && song.title == choice.title)
+        {
+            GameManager.Instance.Score += 1;
+            ShowImage("trueImage");
+        }
+        else
+        {
+            ShowImage("falseImage");
         }
     }
 
@@ -108,22 +137,6 @@ public class Quiz : MonoBehaviour
         NextQuestion();
     }
 
-    void CheckAnswer(Choice choice)
-    {
-        blur.enabled = true;
-        audio.Stop();
-        GameManager.Instance.UserChoices.Add(choice);
-        if (song.artist == choice.artist && song.title == choice.title)
-        {
-            GameManager.Instance.Score += 1;
-            ShowImage("trueImage");
-        }
-        else
-        {
-            ShowImage("falseImage");
-        }
-    }
-
     IEnumerator SetImage(string url)
     {
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
@@ -135,17 +148,28 @@ public class Quiz : MonoBehaviour
             image.enabled = false;
         }
         blur.enabled = false;
+
         picture.texture = DownloadHandlerTexture.GetContent(www);
         picture.enabled = true;
-        audio.Play();
+
+        for (int i = 0; i < question.choices.Count; i++)
+        {
+            Choice choice = question.choices[i];
+            answerButtons[i].GetComponentInChildren<TMP_Text>().text = choice.title;
+        }
+
+        SetButtonActive(true);
+        SetButtonEnable(true);
     }
 
     IEnumerator SetAudio(string url)
     {
         UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV);
         yield return www.SendWebRequest();
+        yield return new WaitForSeconds(0.5f);
 
-        audio.clip = DownloadHandlerAudioClip.GetContent(www);
+        audioSource.clip = DownloadHandlerAudioClip.GetContent(www);
+        audioSource.Play();
     }
 
     IEnumerator WaitAndNextScene()
