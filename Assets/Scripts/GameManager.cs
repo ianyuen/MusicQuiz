@@ -28,4 +28,14 @@ public class GameManager
     public string PlaylistID { get; set; }
     public List<Choice> UserChoices { get; set; }
     public List<Playlist> Playlists { get; set; }
+
+    Dictionary<string, Texture> textures = new Dictionary<string, Texture>();
+    public void SetTexture(string name, Texture texture)
+    {
+        textures.Add(name, texture);
+    }
+    public Texture GetTexture(string name)
+    {
+        return textures.ContainsKey(name) ? textures[name] : null;
+    }
 }

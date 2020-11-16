@@ -12,20 +12,11 @@ public class ResultPrefab : MonoBehaviour
 
     public void SetResult(string answer, string url, bool isRight)
     {
-        StartCoroutine(SetImage(url));
-        button.enabled = false;
+        picture.texture = GameManager.Instance.GetTexture(url);
         button.GetComponentInChildren<TMP_Text>().text = answer;
         if (isRight)
         {
             button.GetComponent<Image>().color = new Color(38/255f, 111/255f, 37/255f);
         }
-    }
-
-    IEnumerator SetImage(string url)
-    {
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
-        yield return www.SendWebRequest();
-        picture.texture = DownloadHandlerTexture.GetContent(www);
-        picture.enabled = true;
     }
 }

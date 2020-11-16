@@ -139,9 +139,13 @@ public class Quiz : MonoBehaviour
 
     IEnumerator SetImage(string url)
     {
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
-        yield return www.SendWebRequest();
-        yield return new WaitForSeconds(0.5f);
+        if (GameManager.Instance.GetTexture(url) == null)
+        {
+            UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
+            yield return www.SendWebRequest();
+            yield return new WaitForSeconds(0.5f);
+            GameManager.Instance.SetTexture(url, DownloadHandlerTexture.GetContent(www));
+        }
 
         foreach (RawImage image in images)
         {
@@ -149,7 +153,7 @@ public class Quiz : MonoBehaviour
         }
         blur.enabled = false;
 
-        picture.texture = DownloadHandlerTexture.GetContent(www);
+        picture.texture = GameManager.Instance.GetTexture(url);
         picture.enabled = true;
 
         for (int i = 0; i < question.choices.Count; i++)
