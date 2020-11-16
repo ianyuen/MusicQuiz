@@ -37,7 +37,7 @@ public class Result : MonoBehaviour
             {
                 isRight = true;
             }
-            SpawnResult(song.title, isRight);
+            SpawnResult(song.title, song.picture, isRight);
 
         }
     }
@@ -48,7 +48,7 @@ public class Result : MonoBehaviour
 
     }
 
-    void SpawnResult(string answer, bool isRight)
+    void SpawnResult(string answer, string url, bool isRight)
     {
         Vector3 position = new Vector3(0, resultPosition, 0);
         GameObject newResult = Instantiate(result, position, Quaternion.identity);
@@ -56,7 +56,7 @@ public class Result : MonoBehaviour
         resultPosition -= 60;
 
         ResultPrefab resultPrefab = newResult.GetComponentInChildren<ResultPrefab>();
-        resultPrefab.SetResult(answer, isRight);
+        resultPrefab.SetResult(answer, url, isRight);
     }
 
     public void OnClickReplay()
