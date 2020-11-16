@@ -8,7 +8,8 @@ using UnityEngine.UI;
 
 public class Quiz : MonoBehaviour
 {
-    public List<Button> answerButtons;
+    public GameObject resultButton;
+    public List<GameObject> answerButtons;
     public List<RawImage> images;
 
     Vector2 scrollViewVector = Vector2.zero;
@@ -21,6 +22,12 @@ public class Quiz : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        resultButton.SetActive(false);
+        foreach (RawImage image in images)
+        {
+            image.enabled = false;
+        }
+
         foreach (Playlist playlist in GameManager.Instance.Playlists)
         {
             if (playlist.id == GameManager.Instance.PlaylistID)
@@ -56,7 +63,11 @@ public class Quiz : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Result");
+            foreach (GameObject answerButton in answerButtons)
+            {
+                answerButton.SetActive(false);
+            }
+            resultButton.SetActive(true);
         }
     }
 
@@ -97,6 +108,11 @@ public class Quiz : MonoBehaviour
     {
         CheckAnswer(question.choices[3]);
         NextQuestion();
+    }
+
+    public void OnClickResult()
+    {
+        SceneManager.LoadScene("Result");
     }
 
     void CheckAnswer(Choice choice)
