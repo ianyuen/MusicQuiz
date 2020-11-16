@@ -5,39 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class Welcome : MonoBehaviour
 {
-    Vector2 scrollViewVector = Vector2.zero;
+    public GameObject button;
 
-    public void OnGUI()
-    {
-        GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
-        GUILayout.BeginVertical("Box");
-
-        GUILayout.Label("Please choose a playlist");
-
-        scrollViewVector = GUILayout.BeginScrollView(scrollViewVector);
-
-        foreach (Playlist playlist in GameManager.Instance.Playlists)
-        {
-            if (GUILayout.Button(playlist.playlist))
-            {
-                GameManager.Instance.PlaylistID = playlist.id;
-                SceneManager.LoadScene("Quiz");
-            }
-        }
-
-        GUILayout.EndScrollView();
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-    }
+    int buttonSpace = 90;
     // Start is called before the first frame update
     void Start()
     {
-
+        for (int i = 0; i < GameManager.Instance.Playlists.Count; i++)
+        {
+            Playlist playlist = GameManager.Instance.Playlists[i];
+            SpawnButton(playlist.id, playlist.playlist, new Vector3(0, i * buttonSpace, 0));
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    void SpawnButton(string playlistID, string playlistName, Vector3 position)
+    {
+        GameObject newButton = Instantiate(button, position, Quaternion.identity);
+        newButton.transform.SetParent(transform, false);
+
+        PlaylistButton playlistButton = newButton.GetComponentInChildren<PlaylistButton>();
+        playlistButton.SetPlaylist(playlistID, playlistName);
     }
 }
