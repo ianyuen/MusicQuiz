@@ -443,8 +443,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1aa40e347ad3a4984dbc589955ad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  background: {fileID: 773142156}
   button: {fileID: 1161532265827572582, guid: 7220726bfd9e3e946a11ae3e140f17b3, type: 3}
-  gam: {fileID: 773142156}
 --- !u!114 &964596579
 MonoBehaviour:
   m_ObjectHideFlags: 0

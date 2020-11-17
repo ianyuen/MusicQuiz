@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 public class PlaylistButton : MonoBehaviour
 {
     public Button button;
+    public Action<string> onClick;
 
     string playlistID;
     string playlistName;
@@ -17,7 +19,6 @@ public class PlaylistButton : MonoBehaviour
     }
     public void OnClick()
     {
-        GameManager.Instance.PlaylistID = playlistID;
-        SceneManager.LoadScene("Quiz");
+        onClick(playlistID);
     }
 }

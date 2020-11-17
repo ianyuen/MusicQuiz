@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Quiz : MonoBehaviour
 {
-    public List<Button> answerButtons;
+    public List<GameObject> answerButtons;
     public List<RawImage> images;
     public RawImage picture;
     public Image blur;
@@ -30,7 +30,10 @@ public class Quiz : MonoBehaviour
         {
             image.enabled = false;
         }
-
+        foreach (GameObject answerButton in answerButtons)
+        {
+            answerButton.GetComponentInChildren<AnswerButton>().onClick = OnClickAnswer;
+        }
         foreach (Playlist playlist in GameManager.Instance.Playlists)
         {
             if (playlist.id == GameManager.Instance.PlaylistID)
@@ -48,7 +51,7 @@ public class Quiz : MonoBehaviour
 
     }
 
-    public void NextQuestion()
+    void NextQuestion()
     {
         SetButtonEnable(false);
         if (index < playlist.questions.Count - 1)
@@ -83,7 +86,7 @@ public class Quiz : MonoBehaviour
 
     void SetButtonActive(bool active)
     {
-        foreach (Button answerButton in answerButtons)
+        foreach (GameObject answerButton in answerButtons)
         {
             answerButton.gameObject.SetActive(active);
         }
@@ -91,9 +94,9 @@ public class Quiz : MonoBehaviour
 
     void SetButtonEnable(bool enable)
     {
-        foreach (Button answerButton in answerButtons)
+        foreach (GameObject answerButton in answerButtons)
         {
-            answerButton.enabled = enable;
+            answerButton.GetComponentInChildren<Button>().enabled = enable;
         }
     }
 
@@ -113,27 +116,9 @@ public class Quiz : MonoBehaviour
         }
     }
 
-    public void OnClickAnswer1()
+    public void OnClickAnswer(int index)
     {
-        CheckAnswer(question.choices[0]);
-        NextQuestion();
-    }
-
-    public void OnClickAnswer2()
-    {
-        CheckAnswer(question.choices[1]);
-        NextQuestion();
-    }
-
-    public void OnClickAnswer3()
-    {
-        CheckAnswer(question.choices[2]);
-        NextQuestion();
-    }
-
-    public void OnClickAnswer4()
-    {
-        CheckAnswer(question.choices[3]);
+        CheckAnswer(question.choices[index]);
         NextQuestion();
     }
 
@@ -158,7 +143,7 @@ public class Quiz : MonoBehaviour
         for (int i = 0; i < question.choices.Count; i++)
         {
             Choice choice = question.choices[i];
-            answerButtons[i].GetComponentInChildren<TMP_Text>().text = choice.title;
+            answerButtons[i].GetComponentInChildren<AnswerButton>().SetButton(i, choice.title);
         }
 
         SetButtonActive(true);
